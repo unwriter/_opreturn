@@ -14,7 +14,7 @@ We're turning Twitter into an application-specific Bitcoin sidechain.
 
 # Why
 
-There can be many powerful use cases, but it all comes down to the fact that for the first time we have created a portal from an uncesorable media into a censorable media.
+There can be many powerful use cases, but it all comes down to the fact that for the first time we have a portal from an uncensorable media into a censorable media. Use your imagination.
 
 For example, if your Twitter account gets banned, shadowbanned, or hijacked, you can still express yourself outside of Twitter through censorship resistant social media such as memo.cash and blockpress, and they will be brought back into Twitter-verse and heard by others who care (who follow this account).
 
