@@ -4,7 +4,7 @@
 
 A portal into the wonderland of Bitcoin powered censorship resistant social media. Powered by http://memo.cash  + http://blockpress.com  + http://chainfeed.org
 
-![img](./screenshot.png)
+![img](./screen.png)
 
 # What
 
