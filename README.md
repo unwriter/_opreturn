@@ -21,7 +21,7 @@ This method returns ALL `OP_RETURN` transactions through its callback but for th
 
 # Why
 
-There can be many powerful use cases, but it all comes down to the fact that for the first time we have a portal from an uncensorable media into a censorable media. Use your imagination.
+There can be many powerful use cases, but it all comes down to the fact that for the first time we have a portal from uncensorable media into censorable media. Use your imagination.
 
 For example, if your Twitter account gets banned, shadowbanned, or hijacked, you can still express yourself outside of Twitter through censorship resistant social media such as memo.cash and blockpress, and they will be brought back into Twitter-verse and heard by others who care (who follow this account).
 
@@ -32,3 +32,7 @@ With great power comes great responsibility. There are certain things `_opreturn
 1. No `@` mentions: The bot replaces all mentions with `$`. We don't want the bot to harrass other Twitter users with mention notifications and get banned.
 2. No media posts: Media specific posts are not replicated because it may trigger an "offensive content" ban.
 
+
+# Feature Requests
+
+I think there can be many additional cool features that can be implemented. Feel free to open an issue to start a discussion.
