@@ -12,6 +12,13 @@ A portal into the wonderland of Bitcoin powered censorship resistant social medi
 
 We're turning Twitter into an application-specific Bitcoin sidechain.
 
+# How
+
+[chainfeed API](https://chainfeed.org/api) lets you listen to all realtime mempool `OP_RETURN` transactions from Bitcoin Cash blockchain through a method called `listen`.
+
+This method returns ALL `OP_RETURN` transactions through its callback but for this app we filter the stream down to just "post a message" actions for the protocols.
+
+
 # Why
 
 There can be many powerful use cases, but it all comes down to the fact that for the first time we have a portal from an uncensorable media into a censorable media. Use your imagination.
