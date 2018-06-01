@@ -35,4 +35,4 @@ With great power comes great responsibility. There are certain things `_opreturn
 
 # Feature Requests
 
-I think there can be many additional cool features that can be implemented. Feel free to open an issue to start a discussion.
+I think there can be many additional cool features that can be implemented. Feel free to [open an issue to start a discussion](https://github.com/unwriter/_opreturn/issues/new).
