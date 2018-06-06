@@ -21,14 +21,14 @@ chainfeed.listen(function(res) {
       if (opcode === '6d02') { // memo post
         if (item.data.length > 1) {
           let msg = Buffer.from(item.data[1].buf.data).toString('utf-8');
-          msg = msg.replace(/@/g, "$")
+          msg = msg.replace(/ @/g, " $")
           msg += (" https://memo.cash/post/" + item.tx.hash)
           send(msg)
         }
       } else if (opcode === '8d02') { // blockpress post
         if (item.data.length > 1) {
           let msg = Buffer.from(item.data[1].buf.data).toString('utf-8');
-          msg = msg.replace(/@/g, "$")
+          msg = msg.replace(/ @/g, " $")
           msg += (" https://www.blockpress.com/posts/" + item.tx.hash)
           send(msg)
         }
