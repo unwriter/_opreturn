@@ -32,6 +32,14 @@ chainfeed.listen(function(res) {
           msg += (" https://www.blockpress.com/posts/" + item.tx.hash)
           send(msg)
         }
+      } else if (opcode === '9d01') { // mttr
+        if (item.data.length >= 3) {
+          let hash = item.tx.hash;
+          let url = "https://www.mttr.app/p/" + hash;
+          let title = Buffer.from(item.data[3].buf.data).toString('utf-8');
+          let msg = "[Longform] " + title + " " + url;
+          send(msg)
+        }
       }
     }
   })
