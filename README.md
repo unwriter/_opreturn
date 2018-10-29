@@ -2,7 +2,7 @@
 
 [@_opreturn](https://twitter.com/_opreturn)
 
-A portal into the wonderland of Bitcoin powered censorship resistant social media. Powered by http://memo.cash  + http://blockpress.com  + http://chainfeed.org
+A portal into the wonderland of Bitcoin powered censorship resistant social media. Powered by http://memo.cash + http://chainfeed.org
 
 ![img](./screen.png)
 
@@ -22,7 +22,7 @@ You can listen to whichever pattern you want by writing a Turing complete query 
 
 There can be many powerful use cases, but it all comes down to the fact that for the first time we have a portal from uncensorable media into censorable media. Use your imagination.
 
-For example, if your Twitter account gets banned, shadowbanned, or hijacked, you can still express yourself outside of Twitter through censorship resistant social media such as memo.cash and blockpress, and they will be brought back into Twitter-verse and heard by others who care (who follow this account).
+For example, if your Twitter account gets banned, shadowbanned, or hijacked, you can still express yourself outside of Twitter through censorship resistant social media such as memo.cash and matter.cash, and they will be brought back into Twitter-verse and heard by others who care (who follow this account).
 
 # Features
 
