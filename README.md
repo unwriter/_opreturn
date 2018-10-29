@@ -2,7 +2,7 @@
 
 [@_opreturn](https://twitter.com/_opreturn)
 
-A portal into the wonderland of Bitcoin powered censorship resistant social media. Powered by http://memo.cash + http://chainfeed.org
+A portal into the wonderland of Bitcoin powered censorship resistant social media. Powered by http://bitsocket.org
 
 ![img](./screen.png)
 
