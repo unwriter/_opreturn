@@ -47,22 +47,22 @@ bs.onmessage = function(e) {
         } else if (out.h1 === "6d03") {
           // reply
           if (/@_opreturn/.test(out.s3)) {
-            send(`[reply]\n${out.s3} https://memo.cash/post/${tx}`)
+            send(`(Comment) ${out.s3} https://memo.cash/post/${tx}`)
           }
         } else if (out.h1 === "6d0c") {
           // topic
           if (/@_opreturn/.test(out.s3)) {
-            send(`[${out.s2}]\n${out.s3} https://memo.cash/post/${tx}`)
+            send(`(Topic: ${out.s2}) ${out.s3} https://memo.cash/post/${tx}`)
           }
         } else if (out.h1 === '6d10') {
           // poll
           if (/@_opreturn/.test(out.s4)) {
-            send(`[Poll]\n${out.s4} https://memo.cash/post/${tx}`)
+            send(`(Poll) ${out.s4} https://memo.cash/post/${tx}`)
           }
         }
       } else if (out.h1 === "9d01")  {
         // Matter.cash
-        send(`[Longform] ${out.s4} https://www.mttr.app/p/${tx}`)
+        send(`(Longform) ${out.s4} https://www.mttr.app/p/${tx}`)
       }
     } catch (e) {
       console.log(e, event.data)
