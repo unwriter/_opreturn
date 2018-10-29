@@ -1,6 +1,8 @@
 require('dotenv').config()
+const EventSource = require('eventsource')
 const Twitter = require('twitter');
-const chainfeed = require('chainfeed')
+
+// Twitter
 var client = new Twitter({
   consumer_key: process.env.consumer_key,
   consumer_secret: process.env.consumer_secret,
@@ -8,39 +10,62 @@ var client = new Twitter({
   access_token_secret: process.env.access_token_secret
 });
 var send = function(msg) {
+  console.log("Posting", msg)
   client.post('statuses/update', {status: msg}, function(error, tweet, response) {
     if (!error) {
       console.log(tweet);
     }
   });
 }
-chainfeed.listen(function(res) {
-  res.forEach(function(item) {
-    if (item.data) {
-      let opcode = Buffer.from(item.data[0].buf.data).toString('hex').toLowerCase()
-      if (opcode === '6d02') { // memo post
-        if (item.data.length > 1) {
-          let msg = Buffer.from(item.data[1].buf.data).toString('utf-8');
-          msg = msg.replace(/ @/g, " $")
-          msg += (" https://memo.cash/post/" + item.tx.hash)
-          send(msg)
+module.exports = {
+  send: send
+}
+var query = {
+  "v": 3,
+  "q": {
+    "find": { "out.b0": { "op": 106 } }
+  },
+  "r": {
+    "f": "{ tx: .[0].tx.h, out: (.[0].out[] | select(.b0.op? == 106)) }"
+  }
+}
+
+// Bitsocket
+var b64 = Buffer.from(JSON.stringify(query)).toString("base64")
+var bs = new EventSource('https://bitsocket.org/s/'+b64)
+bs.onmessage = function(e) {
+  let event = JSON.parse(e.data)
+  if (event.type === 'mempool') {
+    let tx = event.data.tx
+    let out = event.data.out
+    try {
+      if (["6d02", "6d03", "6d0c", "6d10"].includes(out.h1)) {
+        // Memo.cash
+        if (out.h1 === "6d02") {
+          // regular memo. post all
+          send(`${out.s2} https://memo.cash/post/${tx}`)
+        } else if (out.h1 === "6d03") {
+          // reply
+          if (/@_opreturn/.test(out.s3)) {
+            send(`[reply]\n${out.s3} https://memo.cash/post/${tx}`)
+          }
+        } else if (out.h1 === "6d0c") {
+          // topic
+          if (/@_opreturn/.test(out.s3)) {
+            send(`[${out.s2}]\n${out.s3} https://memo.cash/post/${tx}`)
+          }
+        } else if (out.h1 === '6d10') {
+          // poll
+          if (/@_opreturn/.test(out.s4)) {
+            send(`[Poll]\n${out.s4} https://memo.cash/post/${tx}`)
+          }
         }
-      } else if (opcode === '8d02') { // blockpress post
-        if (item.data.length > 1) {
-          let msg = Buffer.from(item.data[1].buf.data).toString('utf-8');
-          msg = msg.replace(/ @/g, " $")
-          msg += (" https://www.blockpress.com/posts/" + item.tx.hash)
-          send(msg)
-        }
-      } else if (opcode === '9d01') { // mttr
-        if (item.data.length >= 3) {
-          let hash = item.tx.hash;
-          let url = "https://www.mttr.app/p/" + hash;
-          let title = Buffer.from(item.data[3].buf.data).toString('utf-8');
-          let msg = "[Longform] " + title + " " + url;
-          send(msg)
-        }
+      } else if (out.h1 === "9d01")  {
+        // Matter.cash
+        send(`[Longform] ${out.s4} https://www.mttr.app/p/${tx}`)
       }
+    } catch (e) {
+      console.log(e, event.data)
     }
-  })
-})
+  }
+}
